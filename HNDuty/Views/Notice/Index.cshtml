@@ -1,0 +1,52 @@
+﻿@using HNDuty.Models
+@model List<Notice>
+@{
+    ViewBag.Title = "公告";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<p />
+<div class="row">
+    <div class="col-md-8">
+        <h5>目前總共有 @ViewBag.Total 則公告</h5>
+    </div>
+    <div class="col-md-4">
+        <a href="@Url.Action("AddNotice","Notice")" class="btn btn-block">新增公告</a>
+    </div>
+</div>
+<p/>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped table-bordered text-center">
+            <thead>
+                <tr>
+                    <th scope="col" width="10%">公告編號</th>
+                    <th scope="col" width="20%">公告日期</th>
+                    <th scope="col" width="60%">公告標題</th>
+                    <th scope="col" width="10%">發布者</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.Total > 0)
+                {
+                    foreach (Notice n in Model)
+                    {
+                        <tr>
+                            <td scope="row">@n.NID</td>
+                            <td>@n.NoticeDate</td>
+                            <td>@n.NoticeTopic</td>
+                            <td>@n.Creator</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" scope="row">目前無任何公告</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
